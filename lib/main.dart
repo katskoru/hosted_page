@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:welcome_page/providers/current_page.dart';
 
 import 'home.dart';
 
@@ -12,19 +14,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(
-            color: Colors.white,
-          ),
-          bodyText2: TextStyle(
-            color: Colors.white,
-          ),
-        ).apply(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => CurrentPage(),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          textTheme: const TextTheme(
+            bodyText1: TextStyle(
+              color: Colors.white,
+            ),
+            bodyText2: TextStyle(
+              color: Colors.white,
+            ),
+          ).apply(),
+        ),
+        home: Home(),
       ),
-      home: Home(),
     );
   }
 }
