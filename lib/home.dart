@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:welcome_page/screens/about_screen.dart';
+import 'package:welcome_page/screens/welcome_screen.dart';
 import 'package:welcome_page/widgets/user_form.dart';
 
 class Home extends StatelessWidget {
@@ -10,6 +12,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(),
       body: Container(
         width: double.infinity,
+        height: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: NetworkImage(
@@ -19,6 +22,8 @@ class Home extends StatelessWidget {
           children: [
             Column(
               children: [
+                WelcomeScreen(),
+                AboutScreen(),
                 ShadeBox(
                   myWidget: Text("Welcome"),
                 ),
@@ -42,22 +47,25 @@ class ShadeBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
-      padding: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        shape: BoxShape.rectangle,
-        color: Colors.black.withOpacity(0.5),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 5.0,
-            offset: Offset(5.0, 5.0),
-          ),
-        ],
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
+        padding: const EdgeInsets.all(15.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          shape: BoxShape.rectangle,
+          color: Colors.black.withOpacity(0.5),
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 5.0,
+              offset: Offset(5.0, 5.0),
+            ),
+          ],
+        ),
+        child: Center(child: myWidget),
       ),
-      child: Center(child: myWidget),
     );
   }
 }
