@@ -12,9 +12,22 @@ class FirstScreen extends StatelessWidget {
     return Column(
       children: [
         ShadeBox(
+          myFunction: () {
+            Provider.of<CurrentPage>(context, listen: false)
+                .pageController
+                .animateToPage(1,
+                    duration: Duration(microseconds: 3), curve: Curves.ease);
+          },
           myWidget: Text("Welcome"),
         ),
-        ShadeBox(myWidget: Text("About")),
+        ShadeBox(
+            myFunction: () {
+              Provider.of<CurrentPage>(context, listen: false)
+                  .pageController
+                  .animateToPage(2,
+                      duration: Duration(microseconds: 3), curve: Curves.ease);
+            },
+            myWidget: Text("About")),
         ShadeBox(myWidget: UserForm())
       ],
     );
@@ -23,8 +36,10 @@ class FirstScreen extends StatelessWidget {
 
 class ShadeBox extends StatelessWidget {
   Widget myWidget;
+  VoidCallback? myFunction;
 
   ShadeBox({
+    this.myFunction,
     required this.myWidget,
     Key? key,
   }) : super(key: key);
@@ -32,14 +47,10 @@ class ShadeBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Provider.of<CurrentPage>(context, listen: false)
-            .pageController
-            .animateToPage(1,
-                duration: Duration(microseconds: 3), curve: Curves.ease);
-      },
+      onTap: myFunction,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
+        width: MediaQuery.of(context).size.width * 0.7,
+        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         padding: const EdgeInsets.all(15.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),

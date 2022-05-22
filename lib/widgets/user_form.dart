@@ -22,6 +22,8 @@ class _UseFormState extends State<UserForm> {
                 filled: true),
           ),
           TextFormField(
+            minLines: 1,
+            maxLines: 4,
             decoration: InputDecoration(
                 label: Text("Message"),
                 fillColor: Colors.white.withOpacity(0.5),
